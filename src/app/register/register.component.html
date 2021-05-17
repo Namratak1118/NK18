@@ -1,0 +1,85 @@
+    <div class="container">
+        <h1 class="text-success text-center">Registration form</h1><br />
+        <div class="col-lg-8 m-auto">
+            <form [formGroup]="Registration" (ngSubmit)="onSubmit()" >
+            
+            <div class="form-group">
+              <label>Name: </label> 
+              <input type="text" formControlName="Name" placeholder="Enter your name" class="form-control">
+              <div *ngIf="Name!.invalid && Name!.touched">
+                <small *ngIf="Name!.errors?.required" class=" text-danger">Name is required</small>
+                <small *ngIf="Name!.errors?.minlength" class=" text-danger">Name must be atleast 3 characters</small>
+            </div>
+            </div>
+            <div class="form-group">
+              <label>Age: </label> 
+              <input type="number" formControlName="Age" placeholder="Enter your age" class="form-control">
+              <div *ngIf="Age!.invalid && Age!.touched">
+                <small *ngIf="Age!.errors?.required" class=" text-danger">Age is required</small>
+            </div>
+          </div>
+                
+          
+            <div class="form-group">
+                <label>Mobile number: </label>
+                <input type="tel" formControlName="Phone" placeholder="Enter your phone number" class="form-control" >
+                <div *ngIf="Phone!.invalid && Phone!.touched">
+                  <small *ngIf="Phone!.errors?.required" class=" text-danger">Mobile number is required</small>
+            </div>
+          </div>
+            <div class="form-group">
+                <label class="gender">Gender:</label><br>
+                <div>
+                  <input type="radio" value="male" name="gender" formControlName="Gender">
+                  <label class="custom-control-label" for="male">Male</label>
+               </div>
+            
+               <div>
+                  <input type="radio" value="female" name="gender" formControlName="gender">
+                  <label class="custom-control-label" for="female">Female</label>
+               </div>
+               <div>
+                <input type="radio" value="Others" name="gender" formControlName="gender">
+                <label class="custom-control-label" for="Others">Others</label>
+             </div>
+            
+               <!-- Showing error method -->
+               <div *ngIf="Gender!.errors?.required">
+                  <p>Please select either value</p>
+               </div>
+              </div>
+
+              <div class="form-group" >
+                <label for="company">company:</label><br>
+                <select formControlName="company" class="form-control">
+                <option value="" selected disabled>Choose your company</option>
+                <option *ngFor="let company of companylist" [value]="company">{{company}}</option>
+                </select>
+               <div *ngIf="company!.errors?.required" class=" text-danger">
+                <small>Please enter your company name</small>
+               </div>
+              </div>
+            <div class="form-group">
+              <label>Username: </label>
+              <input type="text" placeholder="Set a  username"  formControlName="userName" class="form-control">
+              <div *ngIf="userName!.invalid && userName!.touched">
+                <small *ngIf="userName!.errors?.required" class=" text-danger">Username is required</small>
+                <small *ngIf="userName!.errors?.minlength" class="text-danger">Username must be atleast 3 characters</small>
+            </div>
+            </div>
+            <div class="form-group">
+              <label>Password: </label>
+              <input type="password" placeholder="Set a  password" formControlName="passWord" class="form-control">
+              <div *ngIf="passWord!.invalid && passWord!.touched">
+                <small *ngIf="passWord!.errors?.required" class=" text-danger">Pasword is required</small>
+                <small *ngIf="passWord!.errors?.minlength" class="text-danger">Password must be atleast 6 characters</small>
+          </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" >Register</button>
+          </div>
+      <p>Back to login? <a routerLink="/login" class="btn btn-link"></a></p>
+            </form>
+        </div>
+    </div>
+
